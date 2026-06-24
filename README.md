@@ -1,10 +1,13 @@
 # docker-TinyFileManager
+
+[![CI](https://github.com/ilionel/docker-TinyFileManager/actions/workflows/ci.yml/badge.svg)](https://github.com/ilionel/docker-TinyFileManager/actions/workflows/ci.yml)
 The simplest way to use "Tiny File Manager" into a docker environment 
 
 ## Status
 
-This repository currently ships only documentation — no `Dockerfile` / `docker-compose.yml`
-is included yet. A minimal example and the security checklist below are a starting point.
+This repo ships a hardened **`docker-compose.yml`** starting point and the security
+checklist below. TinyFileManager itself (`tinyfilemanager.php`) is **not** bundled — you
+provide a pinned copy (see Quick start).
 
 ## ⚠️ Security
 
@@ -21,20 +24,10 @@ PHP file manager. Misconfigured, it exposes your filesystem. Before exposing it:
   whole home directory.
 - **Disable it if unused.** It is an interactive shell-into-your-files; treat it accordingly.
 
-## Minimal example (review before use)
+## Quick start
 
-```yaml
-# docker-compose.yml — illustrative, not a turnkey image
-services:
-  tinyfilemanager:
-    image: php:8.3-apache            # pin to a digest in production
-    ports:
-      - "127.0.0.1:8080:80"          # bind to localhost; expose via a proxy with auth
-    volumes:
-      - ./app:/var/www/html          # place a pinned tinyfilemanager.php (+ config) here
-      - ./data:/var/www/html/data    # the directory it manages
-    restart: unless-stopped
-```
+A hardened starting point is in [`docker-compose.yml`](docker-compose.yml) (bound to
+`127.0.0.1`, scoped volumes, `restart: unless-stopped`). Then:
 
 1. Download a pinned `tinyfilemanager.php` release into `./app/`.
 2. Edit its config to set strong credentials (and a per-deployment `$auth_users` / salt).

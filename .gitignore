@@ -1,0 +1,3 @@
+# runtime data managed by the container
+/app/
+/data/
