@@ -1,0 +1,11 @@
+# Starting point for running TinyFileManager in a container.
+# Review the Security section in README.md before exposing this anywhere.
+services:
+  tinyfilemanager:
+    image: php:8.3-apache          # pin to a digest in production
+    ports:
+      - "127.0.0.1:8080:80"        # localhost only; expose via an auth proxy over HTTPS
+    volumes:
+      - ./app:/var/www/html        # place a pinned tinyfilemanager.php (+ config) here
+      - ./data:/var/www/html/data  # the directory it manages (scope it tightly)
+    restart: unless-stopped
