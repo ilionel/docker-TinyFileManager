@@ -1,7 +1,8 @@
 # docker-TinyFileManager
 
 [![CI](https://github.com/ilionel/docker-TinyFileManager/actions/workflows/ci.yml/badge.svg)](https://github.com/ilionel/docker-TinyFileManager/actions/workflows/ci.yml)
-The simplest way to use "Tiny File Manager" into a docker environment 
+
+The simplest way to run [TinyFileManager](https://github.com/prasathmani/tinyfilemanager) in a Docker environment.
 
 ## Status
 
